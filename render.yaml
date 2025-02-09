@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: discord-revolt-bridge
+    env: node
+    buildCommand: chmod +x build.sh && ./build.sh
+    startCommand: node dist/server/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: REVOLT_TOKEN
+        sync: false
+      - key: PORT
+        value: "10000"
+    healthCheckPath: /health
+    autoDeploy: true
